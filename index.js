@@ -7,6 +7,7 @@ for (let i = 0; i < drumArray.length; i++) {
 
         const buttonInnerHTML = this.innerHTML;
         playAudio(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
@@ -14,6 +15,7 @@ for (let i = 0; i < drumArray.length; i++) {
 
 document.addEventListener("keydown", event => {
     playAudio(event.key);
+    buttonAnimation(event.key);
     
 });
 
@@ -60,4 +62,13 @@ const playAudio = (character) => {
             console.log(character);
             break;
     }
+}
+
+const buttonAnimation = currentKey => {
+   let activeButton = document.querySelector(`.${currentKey}`);
+   activeButton.classList.add("pressed");
+
+   setTimeout(function() {
+    activeButton.classList.remove("pressed");
+   }, 100);
 }
